@@ -15,12 +15,40 @@ var app = new Vue({
       {
         variantId: 2233,
         variantColor: "green",
+        variantImage: "asset/vmSocks-green.png",
       },
       {
         variantId: 2234,
         variantColor: "blue",
+        variantImage: "asset/vmSocks-blue.png",
       },
     ],
-    sizes: ["38", "40", "42"],
+
+    sizes: [
+      {
+        sizeId: 0,
+        sizeNumber: "38",
+      },
+      {
+        sizeId: 1,
+        sizeNumber: "40",
+      },
+      {
+        sizeId: 2,
+        sizeNumber: "42",
+      },
+    ],
+    cart: 0,
+  },
+  methods: {
+    addToCart: function () {
+      this.cart += 1;
+    },
+    removeFromCart: function () {
+      this.cart -= 1;
+    },
+    updatePtoduct: function (variantImage) {
+      this.imageSource = variantImage;
+    },
   },
 });
