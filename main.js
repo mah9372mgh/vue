@@ -6,7 +6,7 @@ var app = new Vue({
     aTag: "https://www.w3schools.com/",
     imageSource: "asset/vmSocks-green.png",
     imageAlt: "green-socks",
-    inStock: true,
+    inStock: false,
     inventory: 5,
     show: false,
     onSale: true,
