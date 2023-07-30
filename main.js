@@ -1,14 +1,16 @@
 var app = new Vue({
   el: "#app",
   data: {
-    product: "Socks",
+    brand: "Vue Masterfull",
+    product: "Boots",
     description: "A pair of warm, fuzzy socks",
     aTag: "https://www.w3schools.com/",
-    imageSource: "asset/vmSocks-green.png",
+    // imageSource: "asset/vmSocks-green.png",
+    selectedVariant: 0,
     imageAlt: "green-socks",
-    inStock: false,
-    inventory: 5,
-    show: false,
+    // inStock: false,
+    // inventory: 5,
+    // show: false,
     onSale: true,
     details: ["80% cotton", "20% polyester", "Gender-neutral"],
     variants: [
@@ -16,11 +18,13 @@ var app = new Vue({
         variantId: 2233,
         variantColor: "green",
         variantImage: "asset/vmSocks-green.png",
+        variantQuantity: 10,
       },
       {
         variantId: 2234,
         variantColor: "blue",
         variantImage: "asset/vmSocks-blue.png",
+        variantQuantity: 0,
       },
     ],
 
@@ -47,8 +51,26 @@ var app = new Vue({
     removeFromCart: function () {
       this.cart -= 1;
     },
-    updatePtoduct: function (variantImage) {
-      this.imageSource = variantImage;
+    updatePtoduct: function (index) {
+      this.selectedVariant = index;
+      console.log(index);
     },
   },
+  computed: {
+    title () {
+      return this.brand + ' ' + this.product;
+    },
+    imageSource () {
+      return this.variants[this.selectedVariant].variantImage
+    },
+    inStock () {
+      return this.variants[this.selectedVariant].variantQuantity
+    },
+    onsale () {
+      if (this.onSale) {
+        return this.brand + ' ' + this.product + ' on sale!'
+      }
+      return  this.brand + ' ' + this.product + ' not on sale!'
+    },
+  }
 });
